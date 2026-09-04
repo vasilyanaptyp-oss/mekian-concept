@@ -103,9 +103,8 @@ async function runQA() {
 
   // 1. Fill Regnr in Hero
   await testPage.fill('input[placeholder*="REGNR"]', 'XYZ 789');
-  await testPage.click('button:has-text("Få prisförslag")');
+  await testPage.click('button:has-text("Fortsätt till förfrågan")');
   await testPage.waitForTimeout(400);
-
   // Check if modal opened with prefilled regnr
   const modalHeader = await testPage.textContent('h3:has-text("Boka tid hos MEKIAN")');
   console.log('✓ Modal opened successfully on Regnr submit:', modalHeader ? 'YES' : 'NO');
@@ -113,11 +112,11 @@ async function runQA() {
   // Fill modal form
   await testPage.fill('input[placeholder="För- och efternamn"]', 'Lars Svensson');
   await testPage.fill('input[placeholder="070-123 45 67"]', '070-123 45 67');
-  await testPage.click('button:has-text("Skicka bokningsförfrågan")');
+  await testPage.click('button:has-text("Skicka förfrågan via e-post")');
   await testPage.waitForTimeout(400);
 
-  const confirmText = await testPage.textContent('h3:has-text("Tack för din förfrågan")');
-  console.log('✓ Confirmation screen shown:', confirmText ? 'YES' : 'NO');
+  const confirmText = await testPage.textContent('h3:has-text("Öppnar ditt e-postprogram")');
+  console.log('✓ Mailto dispatch screen shown (honest direct contact):', confirmText ? 'YES' : 'NO');
 
   await testPage.screenshot({ path: path.join(EVIDENCE_DIR, 'concept-modal-confirmed-390.png') });
   console.log('✓ Captured modal confirmation screenshot: evidence/screenshots/concept-modal-confirmed-390.png');

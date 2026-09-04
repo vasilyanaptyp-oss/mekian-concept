@@ -5,8 +5,8 @@ export default function WhyMekian() {
   const points = [
     {
       icon: <Shield className="w-6 h-6 text-emerald-400" />,
-      title: 'Nybilsgarantin gäller alltid',
-      desc: 'Enligt EU-direktiv gäller din nybilsgaranti till 100% när du servar hos oss. Vi följer tillverkarens exakta servicescheman.'
+      title: 'Bibehållen nybilsgaranti',
+      desc: 'Vi utför servicen fackmannamässigt enligt biltillverkarens rekommendationer och specifikationer, vilket gör att din nybilsgaranti fortsätter att gälla.'
     },
     {
       icon: <Award className="w-6 h-6 text-sky-400" />,

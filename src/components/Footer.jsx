@@ -20,7 +20,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-1.5 text-emerald-400 font-medium">
               <ShieldCheck className="w-4 h-4" />
-              <span>Nybilsgarantin gäller alltid</span>
+              <span>Service med bibehållen nybilsgaranti</span>
             </div>
           </div>
 
@@ -31,10 +31,8 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2">
               <li><a href="#tjanster" className="hover:text-sky-400 transition-colors">Originalservice & Kontroll</a></li>
-              <li><a href="#tjanster" className="hover:text-sky-400 transition-colors">Bilreparationer & Felsökning</a></li>
               <li><a href="#rostskydd" className="hover:text-sky-400 transition-colors">Rostskyddsbehandling</a></li>
-              <li><a href="#tjanster" className="hover:text-sky-400 transition-colors">Däckbyte & Däckhotell</a></li>
-              <li><a href="#tjanster" className="hover:text-sky-400 transition-colors">Bromsbyte & Mekanik</a></li>
+              <li><a href="#tjanster" className="hover:text-sky-400 transition-colors">Däckbyte & Däckförvaring</a></li>
               <li><a href="#tjanster" className="hover:text-sky-400 transition-colors">Digital felkodsläsning</a></li>
             </ul>
           </div>

@@ -7,7 +7,7 @@ export default function FaqSection() {
   const faqs = [
     {
       q: 'Gäller min nybilsgaranti om jag servar bilen hos MEKIAN?',
-      a: 'Ja, till 100%! Enligt EU-direktivet (gruppundantaget) har du som bilägare frihet att välja bilverkstad. Så länge servicen utförs enligt biltillverkarens föreskrifter och med godkända originaldelar fortsätter din nybilsgaranti att gälla precis som hos en märkesbunden verkstad.'
+      a: 'Ja. Servicen utförs fackmannamässigt enligt biltillverkarens föreskrifter och med godkända delar av originalkvalitet, vilket innebär att bilens nybilsgaranti fortsätter att gälla.'
     },
     {
       q: 'Får jag stämpel i digital servicebok?',

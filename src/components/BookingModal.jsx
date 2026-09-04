@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, Phone, Calendar, Car, AlertCircle, ArrowRight } from 'lucide-react';
+import { X, Phone, Calendar, Car, ArrowRight, Mail } from 'lucide-react';
 
 export default function BookingModal({ isOpen, onClose, initialService, initialRegnr }) {
   const [service, setService] = useState(initialService || 'Bilservice');
@@ -11,9 +11,25 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
 
   if (!isOpen) return null;
 
+  const generateMailto = () => {
+    const subject = encodeURIComponent(`Bokningsförfrågan: ${service}${regnr ? ` (${regnr})` : ''} - ${name}`);
+    const body = encodeURIComponent(
+      `Hej MEKIAN Bilverkstad,\n\nJag vill göra en bokningsförfrågan:\n\n` +
+      `Tjänst: ${service}\n` +
+      `Registreringsnummer: ${regnr || 'Ej angivet'}\n` +
+      `Namn: ${name}\n` +
+      `Telefon: ${phone}\n\n` +
+      `Meddelande:\n${message || 'Inget meddelande angivet.'}\n\n` +
+      `Med vänlig hälsning,\n${name}`
+    );
+    return `mailto:info@mekian.com?subject=${subject}&body=${body}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!phone && !name) return;
+    const mailtoUrl = generateMailto();
+    window.location.href = mailtoUrl;
     setSubmitted(true);
   };
 
@@ -21,7 +37,6 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
     setSubmitted(false);
     onClose();
   };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="relative w-full max-w-lg bg-[#0F1626] border border-slate-700/80 rounded-2xl shadow-2xl p-6 sm:p-8 text-left max-h-[90vh] overflow-y-auto">
@@ -45,7 +60,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
                 Boka tid hos MEKIAN
               </h3>
               <p className="text-xs sm:text-sm text-slate-400 mt-1">
-                Fyll i dina uppgifter så återkommer vi med ett fast och tryggt prisförslag.
+                Fyll i dina uppgifter så förbereds ett meddelande direkt till verkstaden.
               </p>
             </div>
 
@@ -61,9 +76,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
                   className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm focus:outline-none focus:border-sky-500"
                 >
                   <option value="Bilservice">Originalservice & 200-punkters kontroll</option>
-                  <option value="Rostskyddsbehandling">Rostskyddsbehandling & Underrede</option>
-                  <option value="Däckservice">Däckbyte, Balansering eller Däckhotell</option>
-                  <option value="Felsökning & Reparation">Felsökning (Autodata) & Reparation</option>
+                  <option value="Däckservice">Däckbyte, Balansering eller Däckförvaring</option>
                   <option value="Bromsar & Mekanik">Bromsar, Hjulupphängning & Mekanik</option>
                   <option value="Annat ärende">Annat / Övrig förfrågan</option>
                 </select>
@@ -138,9 +151,9 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-glow flex items-center justify-center gap-2 transition-all active:scale-95"
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2 transition-all active:scale-95"
               >
-                <span>Skicka bokningsförfrågan</span>
+                <span>Skicka förfrågan via e-post</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </form>
@@ -154,49 +167,56 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
             </div>
           </div>
         ) : (
-          /* Confirmation State (Honest concept demo) */
-          <div className="py-6 text-center space-y-5 animate-in zoom-in-95 duration-200">
-            <div className="w-14 h-14 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto shadow-lg">
-              <CheckCircle2 className="w-8 h-8" />
+          /* Direct Mailto Dispatch State (Option A) */
+          <div className="py-4 text-center space-y-4 animate-in zoom-in-95 duration-200">
+            <div className="w-12 h-12 bg-sky-500/20 text-sky-400 border border-sky-500/30 rounded-full flex items-center justify-center mx-auto shadow-sm">
+              <Mail className="w-6 h-6" />
             </div>
 
-            <div className="space-y-2">
-              <h3 className="text-2xl font-bold text-white font-display">
-                Tack för din förfrågan, {name}!
+            <div className="space-y-1.5">
+              <h3 className="text-xl font-bold text-white font-display">
+                Öppnar ditt e-postprogram
               </h3>
-              <p className="text-sm text-slate-300 max-w-sm mx-auto leading-relaxed">
-                Detta är ett interaktivt koncept för <strong>MEKIAN Bilverkstad</strong>. I den skarpa versionen kopplas formuläret direkt till verkstadens e-post eller bokningssystem.
+              <p className="text-xs sm:text-sm text-slate-300 max-w-sm mx-auto leading-relaxed">
+                Din förfrågan har förberetts och öppnas i din e-postklient adresserad till <strong>info@mekian.com</strong>.
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 space-y-2 text-left">
+            <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 text-xs text-slate-300 space-y-1.5 text-left">
               <div className="flex justify-between">
-                <span className="text-slate-400">Vald tjänst:</span>
+                <span className="text-slate-400">Tjänst:</span>
                 <span className="font-semibold text-white">{service}</span>
               </div>
               {regnr && (
                 <div className="flex justify-between">
-                  <span className="text-slate-400">Registreringsnummer:</span>
+                  <span className="text-slate-400">Regnr:</span>
                   <span className="font-mono text-sky-400 font-bold">{regnr}</span>
                 </div>
               )}
               <div className="flex justify-between">
-                <span className="text-slate-400">Telefon:</span>
-                <span className="font-semibold text-white">{phone}</span>
+                <span className="text-slate-400">Mottagare:</span>
+                <span className="font-semibold text-white">info@mekian.com</span>
               </div>
             </div>
 
-            <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
+            <div className="pt-2 flex flex-col gap-2">
+              <a
+                href={generateMailto()}
+                className="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm"
+              >
+                <Mail className="w-4 h-4" />
+                <span>Klicka här om e-posten inte öppnades</span>
+              </a>
               <a
                 href="tel:087684570"
-                className="flex-1 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-glow"
+                className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center justify-center gap-1.5 border border-slate-700"
               >
-                <Phone className="w-4 h-4" />
-                <span>Ring verkstaden: 08-768 45 70</span>
+                <Phone className="w-4 h-4 text-sky-400" />
+                <span>Eller ring direkt: 08-768 45 70</span>
               </a>
               <button
                 onClick={handleReset}
-                className="py-3 px-5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs sm:text-sm border border-slate-700"
+                className="text-xs text-slate-500 hover:text-slate-300 pt-1"
               >
                 Stäng
               </button>

@@ -5,23 +5,23 @@ export default function RostskyddHighlight({ onOpenBooking }) {
   const levels = [
     {
       title: 'Fullständig behandling',
-      badge: 'Bästa skyddet',
+      badge: 'Fullt skydd',
       badgeColor: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-      desc: 'Komplett demontering av plastkåpor och innerskärmar. Grundlig högtryckstvätt, torkning och vaxbaserad behandling av alla hålrum, dörrar, balkar, hjulhus och underrede.',
+      desc: 'Noggrann behandling av bilens alla hålrum, dörrar, balkar och hela underredet för maximalt skydd mot vägsalt och fukt.',
       recommended: true
     },
     {
       title: 'Halv behandling',
       badge: 'Utsatta partier',
       badgeColor: 'bg-sky-500/20 text-sky-400 border-sky-500/30',
-      desc: 'Riktar in sig på bilens mest exponerade zoner — hjulhus, skarvar, bromsrör och trösklar. Perfekt som komplettering till tidigare skydd eller för yngre bilar.',
+      desc: 'Fokuserad behandling av bilens mest utsatta partier för att förebygga begynnande rostskador.',
       recommended: false
     },
     {
       title: 'Underredsbehandling',
-      badge: 'Chassi & Golv',
+      badge: 'Chassi & underrede',
       badgeColor: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
-      desc: 'Slitstark elastisk underredsmassa som skyddar bilens golvplåt och chassikomponenter mot mekaniskt stensprut, fukt och vägsalt.',
+      desc: 'Skyddar bilens underrede och chassikomponenter mot slitage från stensprut, fukt och vägsalt.',
       recommended: false
     }
   ];
@@ -45,10 +45,10 @@ export default function RostskyddHighlight({ onOpenBooking }) {
 
               <div className="space-y-3">
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">
-                  Spara tiotusentals kronor med professionellt rostskydd
+                  Effektivt rostskydd mot vägsalt och korrosion
                 </h2>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  Svenska vägar saltas kraftigt varje vinter. Saltlösningen tränger in i hålrum och underredsplåt, vilket leder till rostskador som bilens fabriksgaranti sällan täcker.
+                  Med en rostskyddsbehandlad bil minskar risken för dyra framtida reparationer. Vi skyddar bilens mest utsatta zoner mot fukt och nordiskt vägsalt.
                 </p>
               </div>
 

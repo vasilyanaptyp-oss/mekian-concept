@@ -26,9 +26,9 @@ export default {
         display: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
       },
       boxShadow: {
-        'glow': '0 0 25px -5px rgba(2, 132, 199, 0.25)',
-        'gold-glow': '0 0 25px -5px rgba(245, 158, 11, 0.25)',
-        'card': '0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05)'
+        'glow': '0 2px 8px rgba(2, 132, 199, 0.25)',
+        'gold-glow': '0 2px 8px rgba(245, 158, 11, 0.25)',
+        'card': '0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.06)'
       }
     },
   },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Wrench, CheckCircle2, ArrowRight, Star, Clock, Car, Phone, MapPin } from 'lucide-react';
+import { Shield, Wrench, CheckCircle2, ArrowRight, Clock, Car, Phone, MapPin } from 'lucide-react';
 
 export default function Hero({ onStartBooking }) {
   const [regnr, setRegnr] = useState('');
@@ -12,10 +12,8 @@ export default function Hero({ onStartBooking }) {
 
   return (
     <section className="relative pt-28 md:pt-36 pb-16 md:pb-24 overflow-hidden bg-noise border-b border-slate-800/60">
-      {/* Background radial ambient lights */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[900px] h-[400px] bg-sky-600/10 blur-[130px] pointer-events-none rounded-full" />
-      <div className="absolute top-1/3 right-10 w-[350px] h-[350px] bg-amber-500/5 blur-[120px] pointer-events-none rounded-full" />
-
+      {/* Background subtle ambient light */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-sky-600/5 blur-[90px] pointer-events-none rounded-full" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
@@ -47,9 +45,9 @@ export default function Hero({ onStartBooking }) {
               <div className="flex items-center justify-between mb-3">
                 <span className="text-xs font-bold tracking-wider uppercase text-sky-400 flex items-center gap-1.5">
                   <Car className="w-4 h-4" />
-                  Snabb bokningsförfrågan
+                  Bokningsförfrågan med regnr
                 </span>
-                <span className="text-xs text-slate-400">Kostnadsfri offert</span>
+                <span className="text-xs text-slate-400">Direkt till verkstaden</span>
               </div>
 
               <form onSubmit={handleQuickSubmit} className="space-y-3.5">
@@ -91,9 +89,9 @@ export default function Hero({ onStartBooking }) {
 
                   <button
                     type="submit"
-                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-glow transition-all active:scale-95"
+                    className="px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-semibold text-sm flex items-center justify-center gap-2 shadow-sm transition-all active:scale-95"
                   >
-                    <span>Få prisförslag</span>
+                    <span>Fortsätt till förfrågan</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -115,7 +113,7 @@ export default function Hero({ onStartBooking }) {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
               <div className="flex items-center gap-2 text-slate-300 text-xs">
                 <Shield className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Nybilsgarantin gäller</span>
+                <span>Bibehållen nybilsgaranti</span>
               </div>
               <div className="flex items-center gap-2 text-slate-300 text-xs">
                 <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
@@ -135,9 +133,6 @@ export default function Hero({ onStartBooking }) {
           {/* Right Column: Visual Workshop Card & Direct Proof */}
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Decorative gradient border */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-sky-500/30 to-blue-600/30 rounded-3xl blur-md opacity-75" />
-              
               <div className="relative rounded-2xl overflow-hidden glass-panel border border-slate-700/80 shadow-2xl bg-[#0D1424]">
                 {/* Genuine Workshop Photo */}
                 <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-slate-900">
@@ -159,15 +154,9 @@ export default function Hero({ onStartBooking }) {
 
                 {/* Card Body Info */}
                 <div className="p-6 space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <h3 className="text-lg font-bold text-white font-display">MEKIAN Bilverkstad AB</h3>
-                      <p className="text-xs text-slate-400">Auktoriserat oberoende verkstadsarbete sedan 2017</p>
-                    </div>
-                    <div className="px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-bold flex items-center gap-1">
-                      <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                      4.8 / 5.0
-                    </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white font-display">MEKIAN Bilverkstad AB</h3>
+                    <p className="text-xs text-slate-400">Fristående bilverkstad på Nytorpsvägen i Täby</p>
                   </div>
 
                   <div className="space-y-2 text-xs text-slate-300">

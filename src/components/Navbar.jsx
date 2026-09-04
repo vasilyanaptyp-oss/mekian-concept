@@ -33,7 +33,7 @@ export default function Navbar({ onOpenBooking }) {
           <div className="flex items-center space-x-4">
             <span className="flex items-center gap-1 text-emerald-400 font-medium">
               <ShieldCheck className="w-3.5 h-3.5" />
-              Nybilsgaranti gäller alltid
+              Service med bibehållen nybilsgaranti
             </span>
             <a href="tel:087684570" className="text-sky-400 hover:text-sky-300 font-semibold transition-colors">
               Direktkontakt: 08-768 45 70

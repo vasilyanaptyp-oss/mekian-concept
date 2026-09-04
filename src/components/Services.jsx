@@ -61,19 +61,19 @@ export default function Services({ onSelectService }) {
     },
     {
       id: 'dack',
-      title: 'Däckservice & Däckhotell',
-      subtitle: 'Smidigt säsongsskifte och säker förvaring',
-      tag: 'Drop-in & Tidsbokning',
+      title: 'Däckservice & Däckförvaring',
+      subtitle: 'Smidigt säsongsskifte och trygg förvaring',
+      tag: 'Däckbyte & Balansering',
       tagColor: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
       icon: <Disc className="w-6 h-6 text-blue-400" />,
-      description: 'Slipp släpa tunga däck. Vi hjälper dig med snabbt däckbyte, precisionsbalansering och säker förvaring i vårt mörka och svala däckhotell i Täby.',
+      description: 'Vi hjälper dig med snabbt däckbyte, hjulbalansering och däckförvaring i Täby så att dina hjul förvaras tryggt mellan säsongerna.',
       points: [
-        'Däckbyte och skifte inför sommar- eller vintersäsongen',
-        'Hjulbalansering för vibrationsfri och tyst gång',
-        'Däckhotell: tvätt, rengöring och mörkt, svalt däckutrymme',
-        'Kontroll av mönsterdjup, slitagebild och lufttryck',
-        'Åtdragning med rätt moment och efterdragning',
-        'Rådgivning och beställning av nya kvalitetsdäck'
+        'Däckbyte och skifte inför sommar- och vintersäsongen',
+        'Hjulbalansering för vibrationsfri och stabil gång',
+        'Däckförvaring mellan säsongerna i Täby',
+        'Kontroll av mönsterdjup, slitage och lufttryck',
+        'Korrekt åtdragning med momentnyckel',
+        'Hjälp med rådgivning och beställning av nya däck'
       ],
       popular: false
     }
