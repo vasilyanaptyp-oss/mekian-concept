@@ -1,0 +1,90 @@
+[
+  {
+    "viewport": "320x800",
+    "name": "Mobile 320 (iPhone SE)",
+    "width": 320,
+    "scrollWidth": 320,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-320x800.png"
+  },
+  {
+    "viewport": "360x800",
+    "name": "Mobile 360 (Android Std)",
+    "width": 360,
+    "scrollWidth": 360,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-360x800.png"
+  },
+  {
+    "viewport": "390x844",
+    "name": "Mobile 390 (iPhone 12/13/14)",
+    "width": 390,
+    "scrollWidth": 390,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-390x844.png"
+  },
+  {
+    "viewport": "430x932",
+    "name": "Mobile 430 (iPhone Pro Max)",
+    "width": 430,
+    "scrollWidth": 430,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-430x932.png"
+  },
+  {
+    "viewport": "768x1024",
+    "name": "Tablet 768 (iPad Portrait)",
+    "width": 768,
+    "scrollWidth": 768,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-768x1024.png"
+  },
+  {
+    "viewport": "1024x768",
+    "name": "Tablet 1024 (iPad Landscape)",
+    "width": 1024,
+    "scrollWidth": 1024,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-1024x768.png"
+  },
+  {
+    "viewport": "1440x900",
+    "name": "Desktop 1440 (Standard)",
+    "width": 1440,
+    "scrollWidth": 1440,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-1440x900.png"
+  },
+  {
+    "viewport": "1920x1080",
+    "name": "Desktop 1920 (Widescreen)",
+    "width": 1920,
+    "scrollWidth": 1920,
+    "overflow": "0px",
+    "consoleErrors": 0,
+    "failedRequests": 0,
+    "status": "PASS",
+    "screenshot": "evidence/qa/qa-viewport-1920x1080.png"
+  }
+]

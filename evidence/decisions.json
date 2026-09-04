@@ -1,0 +1,38 @@
+[
+  {
+    "id": "DEC-001",
+    "topic": "Information Architecture",
+    "decision": "Single-Page Application (SPA) with in-page anchor navigation and interactive modal",
+    "rationale": "For a local Swedish auto repair workshop with 4 core services, a cohesive, fast-loading single page converts significantly better on mobile than multi-page navigation. It prevents fragmented bounce rates."
+  },
+  {
+    "id": "DEC-002",
+    "topic": "Booking / Contact Request Flow",
+    "decision": "Transparent direct mailto dispatch with full form prefilling and direct call fallback (Option A)",
+    "rationale": "No server backend exists. Simulated submissions destroy client trust. Generating a prefilled mailto directly addressed to info@mekian.com is honest, works on all devices, and creates immediate utility."
+  },
+  {
+    "id": "DEC-003",
+    "topic": "Registration Number UX",
+    "decision": "Regnr field serves as a prefill vehicle identifier for the contact inquiry, NOT an automatic pricing engine",
+    "rationale": "Avoids deceptive promises of instant pricing calculations while giving car owners a convenient, familiar way to specify their car."
+  },
+  {
+    "id": "DEC-004",
+    "topic": "Visual Identity & Atmosphere",
+    "decision": "Scandinavian automotive workshop palette: slate/charcoal (#0A0E17, #111827), precision blue (#0284C7), and subtle warm amber (#F59E0B)",
+    "rationale": "Replaces generic crypto/fintech neon glows with a grounded, practical, trustworthy aesthetic reflecting a real physical garage in Täby."
+  },
+  {
+    "id": "DEC-005",
+    "topic": "Tone of Voice",
+    "decision": "Calm, understated, factual Swedish business copy",
+    "rationale": "Removes AI buzzwords and legal absolutes ('Nybilsgarantin gäller alltid', '100%'). Follows Swedish business standards."
+  },
+  {
+    "id": "DEC-006",
+    "topic": "Mobile Sticky Action Bar",
+    "decision": "Persistent bottom action bar on mobile viewports (<640px) with direct call and book modal triggers",
+    "rationale": "Over 70% of urgent auto repair visitors are on mobile phones; one-thumb calling access maximizes inbound leads."
+  }
+]

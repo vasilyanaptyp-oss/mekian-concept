@@ -2,22 +2,25 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const EVIDENCE_DIR = path.join(__dirname, '..', 'evidence', 'screenshots');
-if (!fs.existsSync(EVIDENCE_DIR)) {
-  fs.mkdirSync(EVIDENCE_DIR, { recursive: true });
-}
+const QA_DIR = path.join(__dirname, '..', 'evidence', 'qa');
+const SCREENSHOT_DIR = path.join(__dirname, '..', 'evidence', 'screenshots');
+
+if (!fs.existsSync(QA_DIR)) fs.mkdirSync(QA_DIR, { recursive: true });
+if (!fs.existsSync(SCREENSHOT_DIR)) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 
 const VIEWPORTS = [
-  { name: 'Mobile 320 (iPhone SE)', width: 320, height: 640 },
+  { name: 'Mobile 320 (iPhone SE)', width: 320, height: 800 },
   { name: 'Mobile 360 (Android Std)', width: 360, height: 800 },
   { name: 'Mobile 390 (iPhone 12/13/14)', width: 390, height: 844 },
   { name: 'Mobile 430 (iPhone Pro Max)', width: 430, height: 932 },
-  { name: 'Tablet 768 (iPad)', width: 768, height: 1024 },
-  { name: 'Desktop 1440 (Standard)', width: 1440, height: 900 }
+  { name: 'Tablet 768 (iPad Portrait)', width: 768, height: 1024 },
+  { name: 'Tablet 1024 (iPad Landscape)', width: 1024, height: 768 },
+  { name: 'Desktop 1440 (Standard)', width: 1440, height: 900 },
+  { name: 'Desktop 1920 (Widescreen)', width: 1920, height: 1080 }
 ];
 
-async function runQA() {
-  console.log('Starting Playwright QA Sweep across 6 Viewports...');
+async function runProductionQA() {
+  console.log('=== MEKIAN BILVERKSTAD: PRODUCTION QA SWEEP (8 VIEWPORTS) ===\n');
   const browser = await chromium.launch({ headless: true, args: ['--no-sandbox'] });
   
   const results = [];
@@ -25,6 +28,7 @@ async function runQA() {
 
   for (const vp of VIEWPORTS) {
     const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height } });
+    
     const consoleErrors = [];
     page.on('console', msg => {
       if (msg.type() === 'error') consoleErrors.push(msg.text());
@@ -35,8 +39,8 @@ async function runQA() {
       failedRequests.push(`${req.url()} (${req.failure()?.errorText})`);
     });
 
-    await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
-    await page.waitForTimeout(500);
+    const resp = await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(400);
 
     const metrics = await page.evaluate(() => {
       const innerW = window.innerWidth;
@@ -63,70 +67,81 @@ async function runQA() {
       };
     });
 
-    // Capture screenshots for 390 and 1440
-    if (vp.width === 390) {
-      await page.screenshot({ path: path.join(EVIDENCE_DIR, 'concept-mobile-390.png'), fullPage: true });
-      console.log('✓ Captured full-page mobile screenshot: evidence/screenshots/concept-mobile-390.png');
-    } else if (vp.width === 1440) {
-      await page.screenshot({ path: path.join(EVIDENCE_DIR, 'concept-desktop-1440.png'), fullPage: true });
-      console.log('✓ Captured full-page desktop screenshot: evidence/screenshots/concept-desktop-1440.png');
-    }
+    // Save screenshot for each viewport
+    const vpFileName = `qa-viewport-${vp.width}x${vp.height}.png`;
+    await page.screenshot({ path: path.join(QA_DIR, vpFileName), fullPage: true });
 
     const pass = !metrics.hasOverflow && consoleErrors.length === 0 && failedRequests.length === 0;
     if (!pass) allPass = false;
 
     results.push({
-      viewport: vp.name,
+      viewport: `${vp.width}x${vp.height}`,
+      name: vp.name,
       width: vp.width,
       scrollWidth: metrics.scrollW,
-      hasOverflow: metrics.hasOverflow,
+      overflow: metrics.scrollW > metrics.innerW ? `+${metrics.scrollW - metrics.innerW}px` : '0px',
       consoleErrors: consoleErrors.length,
       failedRequests: failedRequests.length,
-      status: pass ? 'PASS' : 'FAIL'
+      status: pass ? 'PASS' : 'FAIL',
+      screenshot: `evidence/qa/${vpFileName}`
     });
 
-    console.log(`[${vp.name}] => ${pass ? 'PASS' : 'FAIL'} (Width: ${metrics.innerW}px, ScrollW: ${metrics.scrollW}px, ConsoleErr: ${consoleErrors.length})`);
-    if (metrics.hasOverflow) {
-      console.log('   Overflow details:', metrics.topOverflowing);
-    }
-    if (consoleErrors.length > 0) {
-      console.log('   Console errors:', consoleErrors);
-    }
-
+    console.log(`[${vp.name} (${vp.width}x${vp.height})] => ${pass ? 'PASS' : 'FAIL'} | ScrollW: ${metrics.scrollW}px (Overflow: ${metrics.scrollW > metrics.innerW ? 'YES' : '0px'}) | ConsoleErrors: ${consoleErrors.length}`);
     await page.close();
   }
 
-  // Interactive flow test on Mobile (390px)
-  console.log('\nTesting Interactive Flows (Modal & Regnr input)...');
+  // Interaction Tests
+  console.log('\n=== TESTING INTERACTIONS & ACCESSIBILITY ===');
   const testPage = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await testPage.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle' });
 
-  // 1. Fill Regnr in Hero
-  await testPage.fill('input[placeholder*="REGNR"]', 'XYZ 789');
+  // 1. Test Skip Link
+  const skipLink = await testPage.$('a[href="#main-content"]');
+  console.log('✓ Skip-to-content link present in DOM:', skipLink ? 'YES' : 'NO');
+
+  // 2. Test Registration Number Form Prefill Flow
+  await testPage.fill('input[placeholder*="REGNR"]', 'ABC 123');
   await testPage.click('button:has-text("Fortsätt till förfrågan")');
   await testPage.waitForTimeout(400);
-  // Check if modal opened with prefilled regnr
-  const modalHeader = await testPage.textContent('h3:has-text("Boka tid hos MEKIAN")');
-  console.log('✓ Modal opened successfully on Regnr submit:', modalHeader ? 'YES' : 'NO');
 
-  // Fill modal form
-  await testPage.fill('input[placeholder="För- och efternamn"]', 'Lars Svensson');
-  await testPage.fill('input[placeholder="070-123 45 67"]', '070-123 45 67');
+  const modalVisible = await testPage.isVisible('div[role="dialog"]');
+  console.log('✓ Modal opened with role="dialog":', modalVisible ? 'YES' : 'NO');
+
+  // 3. Test ESC Key Close
+  await testPage.keyboard.press('Escape');
+  await testPage.waitForTimeout(300);
+  const modalClosedAfterEsc = !(await testPage.isVisible('div[role="dialog"]'));
+  console.log('✓ Modal closed upon pressing ESC key:', modalClosedAfterEsc ? 'YES' : 'NO');
+
+  // 4. Reopen modal and test mailto generation
+  await testPage.click('button:has-text("Fortsätt till förfrågan")');
+  await testPage.waitForTimeout(300);
+  await testPage.fill('input[placeholder="För- och efternamn"]', 'Anna Lindqvist');
+  await testPage.fill('input[placeholder="070-123 45 67"]', '070-987 65 43');
   await testPage.click('button:has-text("Skicka förfrågan via e-post")');
   await testPage.waitForTimeout(400);
 
-  const confirmText = await testPage.textContent('h3:has-text("Öppnar ditt e-postprogram")');
-  console.log('✓ Mailto dispatch screen shown (honest direct contact):', confirmText ? 'YES' : 'NO');
-
-  await testPage.screenshot({ path: path.join(EVIDENCE_DIR, 'concept-modal-confirmed-390.png') });
-  console.log('✓ Captured modal confirmation screenshot: evidence/screenshots/concept-modal-confirmed-390.png');
+  const mailtoScreenVisible = await testPage.isVisible('h3:has-text("Öppnar ditt e-postprogram")');
+  console.log('✓ Honest mailto dispatch screen rendered:', mailtoScreenVisible ? 'YES' : 'NO');
 
   await testPage.close();
   await browser.close();
 
-  console.log('\n=== QA RESULTS SUMMARY ===');
-  console.table(results);
-  console.log('Overall Status:', allPass ? '100% PASS' : 'ISSUES DETECTED');
+  // Save QA Results Ledger
+  fs.writeFileSync(path.join(QA_DIR, 'qa_results.json'), JSON.stringify(results, null, 2));
+  console.log('\n✓ Saved evidence/qa/qa_results.json');
+
+  console.log('\n=== PRODUCTION QA TABLE ===');
+  console.table(results.map(r => ({
+    Viewport: r.viewport,
+    Name: r.name,
+    ScrollWidth: r.scrollWidth,
+    Overflow: r.overflow,
+    ConsoleErrors: r.consoleErrors,
+    Status: r.status
+  })));
+
+  console.log('\nOVERALL QA STATUS:', allPass && modalVisible && modalClosedAfterEsc && mailtoScreenVisible ? '100% PASS' : 'ISSUES DETECTED');
 }
 
-runQA().catch(console.error);
+runProductionQA().catch(console.error);

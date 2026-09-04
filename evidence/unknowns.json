@@ -1,0 +1,44 @@
+[
+  {
+    "item": "Exact Pricing & Hourly Labor Rate",
+    "category": "PRICING",
+    "status": "UNKNOWN",
+    "impact": "No fixed prices displayed on site; all quotes handled upon inquiry via regnr/service request.",
+    "client_action": "Client can provide standard hourly rate or service pricing tiers if they desire public pricing."
+  },
+  {
+    "item": "Insurance Company Partnerships",
+    "category": "PARTNERSHIPS",
+    "status": "UNKNOWN",
+    "impact": "No insurance company logos (Folksam, If, Länsförsäkringar) displayed on site to prevent false partnership claims.",
+    "client_action": "Client can confirm which insurance damage claims they handle."
+  },
+  {
+    "item": "Loaner Car (Lånebil) Availability",
+    "category": "AMENITIES",
+    "status": "UNKNOWN",
+    "impact": "Not claimed on site.",
+    "client_action": "Client can confirm if replacement cars or transport to Roslagsbanan are offered."
+  },
+  {
+    "item": "Staff Members & Mechanics Roster",
+    "category": "TEAM",
+    "status": "UNKNOWN",
+    "impact": "No individual mechanic names or stock photos used; site focuses on the workshop team and premises.",
+    "client_action": "Client can add real team member bios and certifications if desired."
+  },
+  {
+    "item": "Booking CRM / Backend Integration",
+    "category": "TECHNICAL",
+    "status": "UNKNOWN",
+    "impact": "Booking flow currently uses clean prefilled mailto dispatch directly to info@mekian.com with direct telephone fallback.",
+    "client_action": "Client can specify if they use ProMeister, Lasingoo, Fortnox, or another booking API."
+  },
+  {
+    "item": "Accepted Payment Methods",
+    "category": "FINANCIAL",
+    "status": "UNKNOWN",
+    "impact": "Not explicitly listed on site.",
+    "client_action": "Client can confirm acceptance of Swish, Klarna, card, or invoicing."
+  }
+]

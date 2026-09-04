@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Phone, Calendar, Car, ArrowRight, Mail } from 'lucide-react';
 
 export default function BookingModal({ isOpen, onClose, initialService, initialRegnr }) {
@@ -8,6 +8,15 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -38,7 +47,12 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
     onClose();
   };
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+    <div 
+      role="dialog" 
+      aria-modal="true" 
+      aria-labelledby="modal-title"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200"
+    >
       <div className="relative w-full max-w-lg bg-[#0F1626] border border-slate-700/80 rounded-2xl shadow-2xl p-6 sm:p-8 text-left max-h-[90vh] overflow-y-auto">
         
         {/* Close button */}
@@ -56,7 +70,7 @@ export default function BookingModal({ isOpen, onClose, initialService, initialR
               <span className="text-xs font-bold uppercase tracking-wider text-sky-400">
                 Bokningsförfrågan & Offert
               </span>
-              <h3 className="text-2xl font-bold text-white font-display mt-1">
+              <h3 id="modal-title" className="text-2xl font-bold text-white font-display mt-1">
                 Boka tid hos MEKIAN
               </h3>
               <p className="text-xs sm:text-sm text-slate-400 mt-1">

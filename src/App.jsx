@@ -33,11 +33,19 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0A0E17] text-slate-100 flex flex-col font-sans selection:bg-sky-500 selection:text-white">
+      {/* Accessibility Skip Link */}
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-sky-600 focus:text-white focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white text-xs font-semibold"
+      >
+        Hoppa till huvudinnehåll
+      </a>
+
       {/* Top Navigation */}
       <Navbar onOpenBooking={() => handleOpenBooking('Bilservice')} />
 
       {/* Main Content Sections */}
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         <Hero onStartBooking={(regnr, service) => handleOpenBooking(service, regnr)} />
         <Services onSelectService={(service) => handleOpenBooking(service)} />
         <RostskyddHighlight onOpenBooking={(service) => handleOpenBooking(service)} />
@@ -58,7 +66,7 @@ export default function App() {
       />
 
       {/* Floating Sticky Mobile Quick Action Bar (Visible only on mobile devices) */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-[#0D131F]/95 backdrop-blur-md border-t border-slate-800 p-2.5 px-4 flex items-center justify-between gap-3 shadow-2xl">
+      <div className="fixed bottom-0 left-0 right-0 z-40 sm:hidden bg-[#0D131F]/95 backdrop-blur-md border-t border-slate-800 pt-2.5 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] flex items-center justify-between gap-3 shadow-2xl">
         <a
           href="tel:087684570"
           className="flex-1 py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-center gap-1.5 border border-slate-700 active:scale-95 transition-all"

@@ -1,0 +1,121 @@
+[
+  {
+    "claim": "Legal Entity Name is MEKIAN Bilverkstad AB",
+    "status": "FACT",
+    "source": "https://mekian.com/Kontakt",
+    "source_evidence": "Hitta.se map integration link query parameter 'MEKIAN Bilverkstad AB Nytorpsvägen Täby' and footer copyright",
+    "used_on_site": true
+  },
+  {
+    "claim": "Physical Workshop Address is Nytorpsvägen 2A, 183 53 Täby, Stockholm",
+    "status": "FACT",
+    "source": "https://mekian.com/Kontakt",
+    "source_evidence": "Text on contact page: 'Adress Nytorpsvägen 2 A, 183 53 Täby-Stockholm' with geo coordinates 59.43502, 18.07760",
+    "used_on_site": true
+  },
+  {
+    "claim": "Primary Workshop Telephone Number is 08-768 45 70",
+    "status": "FACT",
+    "source": "https://mekian.com/Kontakt",
+    "source_evidence": "Text on contact and home page: 'Tel: 08-768 45 70'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Secondary / Mobile Telephone Number is 073-974 87 97",
+    "status": "FACT",
+    "source": "https://mekian.com/Kontakt",
+    "source_evidence": "Text on contact page: 'Tel: 073 974 87 97'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Official Contact Email is info@mekian.com",
+    "status": "FACT",
+    "source": "https://mekian.com/Kontakt",
+    "source_evidence": "Text on contact and home page: 'info@mekian.com'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Opening Hours: Monday-Friday 07:00-17:00, Saturday 10:00-16:00, Sunday Closed",
+    "status": "FACT",
+    "source": "https://mekian.com",
+    "source_evidence": "Homepage section Öppettider: 'Måndag-fredag 0 7.00-17.00, Lördag 10.00-16.00, Söndag Stängt'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Originalservice performed with approx 200 checkpoints and written protocol",
+    "status": "FACT",
+    "source": "https://mekian.com/bilservice",
+    "source_evidence": "Bullet points on /bilservice: 'Kontroller av ca 200 punkter' and 'Serviceprotokoll'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Digital diagnostics performed with Autodata",
+    "status": "FACT",
+    "source": "https://mekian.com/bilservice",
+    "source_evidence": "Bullet point on /bilservice: 'Digital felsökning(Autodata)'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Service stamp provided in physical and digital service book",
+    "status": "FACT",
+    "source": "https://mekian.com/bilservice",
+    "source_evidence": "Body text on /bilservice: 'Hos Mekian får du en orginalservice av din bil med stämpel i serviceboken och digital servicebok..'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Original parts used with documented warranty on material and labor",
+    "status": "FACT",
+    "source": "https://mekian.com/bilservice",
+    "source_evidence": "Body text on /bilservice: 'Mekian använder orginaldelar med dokumenterad garanti både på material och arbete.'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Oil and oil filter change performed during service",
+    "status": "FACT",
+    "source": "https://mekian.com/bilservice",
+    "source_evidence": "Bullet point on /bilservice: 'Byte av motorolja och oljefilter'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Service message and error code reset performed",
+    "status": "FACT",
+    "source": "https://mekian.com/bilservice",
+    "source_evidence": "Bullet points on /bilservice: 'Service meddelande uppdatering' and 'Uppdatering och radering av felkoder'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Rust protection offered in three tiers: full, half, underbody",
+    "status": "FACT",
+    "source": "https://mekian.com/rostskyddsbehandling",
+    "source_evidence": "Body text on /rostskyddsbehandling: 'Välj fullständig rostskyddsbehandling, halv rostskyddsbehandling eller rostskyddsbehandling av underrede'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Tire change, balancing, and seasonal tire storage provided",
+    "status": "FACT",
+    "source": "https://mekian.com",
+    "source_evidence": "Homepage bullets: 'Däckbyte och balansering' and 'Däck förvaring'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Servicing and mechanical repair of all vehicle brands",
+    "status": "FACT",
+    "source": "https://mekian.com",
+    "source_evidence": "Homepage text: 'Vi gör service och reparerar alla bil märken och mycket annat'",
+    "used_on_site": true
+  },
+  {
+    "claim": "Building and workshop facade on Nytorpsvägen",
+    "status": "FACT",
+    "source": "https://mekian.com/galleri",
+    "source_evidence": "Public gallery images tabilcenter(1).jpg and m8.jpg showing the physical Täby workshop premises",
+    "used_on_site": true
+  },
+  {
+    "claim": "Preservation of manufacturer warranty when servicing according to schedule",
+    "status": "INFERENCE",
+    "source": "Swedish automotive industry regulation (EU Motor Vehicle Block Exemption 461/2010)",
+    "source_evidence": "Under Swedish & EU consumer law, regular maintenance according to manufacturer specifications preserves warranty; MEKIAN explicitly states they follow original specs and use original parts",
+    "used_on_site": true
+  }
+]
